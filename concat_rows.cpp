@@ -92,14 +92,18 @@ int main() {
 
     std::cout << "Введите размерность 1ой матрицы n1 x m1\n";
     if (!(std::cin >> n1 >> m1)) {
-        std::cerr << "Error: invalid input\n";
+        std::cerr << "Error: invalid input";
         return 1;
+    } else if (n1 == 0 && m1 == 0) {
+        std::cerr << "Error: n1 & m1 are zero values";
     }
 
     std::cout << "Введите размерность 2ой матрицы n2 x m2\n";
     if (!(std::cin >> n2 >> m2)) {
-        std::cerr << "Error: invalid input\n";
+        std::cerr << "Error: invalid input";
         return 1;
+    } else if (n2 == 0 && m2 == 0) {
+        std::cerr << "Error: n2 & m2 are zero values";
     }
 
     if (n1 >= n2) {
@@ -123,7 +127,7 @@ int main() {
             lhs_located++; 
             for (size_t j = 0; j < m1; j++) {
                 if (!(std::cin >> lhs[i][j])) {
-                    std::cerr << "Error: invalid input\n";
+                    std::cerr << "Error: invalid input";
                     del_matrix(lhs, lhs_located); 
                     return 1;
                 }
@@ -137,7 +141,7 @@ int main() {
             rhs_located++; 
             for (size_t j = 0; j < m2; j++) {
                 if (!(std::cin >> rhs[i][j])) {
-                    std::cerr << "Error: invalid input\n";
+                    std::cerr << "Error: invalid input";
                     del_matrix(lhs, lhs_located);
                     del_matrix(rhs, rhs_located);
                     return 1;
@@ -147,7 +151,7 @@ int main() {
 
         result = concat_rows(lhs, n1, m1, rhs, n2, m2);
 
-        std::cout << "Результат соединения\n";
+        std::cout << "Результат соединения:\n";
         for (size_t i = 0; i < max_n; i++) {
             size_t m3 = 0;
             if (i < n1) m3 += m1;
@@ -160,7 +164,7 @@ int main() {
         }
 
     } catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << " (Код 2)\n";
+        std::cerr << "Error: " << e.what() << '\n';
         
         del_matrix(lhs, lhs_located);
         del_matrix(rhs, rhs_located);
